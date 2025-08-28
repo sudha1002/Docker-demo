@@ -1,6 +1,6 @@
 #!/bin/bash
-ARCH=amd64
-PLATFORM=$(uname -s)_$ARCH
+#ARCH=amd64
+#PLATFORM=$(uname -s)_$ARCH
 
 growpart /dev/nvme0n1 4
 lvextend -l +50%FREE /dev/RootVG/rootVol
@@ -9,12 +9,12 @@ xfs_growfs /
 xfs_growfs /var
 
 
-dnf -y install dnf-plugins-core
-dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo 
-dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-systemctl start docker
-systemctl enable docker
-usermod -aG docker ec2-user
+# dnf -y install dnf-plugins-core
+# dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo 
+# dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+# systemctl start docker
+# systemctl enable docker
+# usermod -aG docker ec2-user
 
 # # kubectl install
 # curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.33.3/2025-08-03/bin/linux/amd64/kubectl
